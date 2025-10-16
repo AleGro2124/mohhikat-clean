@@ -146,6 +146,6 @@ app.post("/webhook", (req, res) => {
 });
 
 // 🚀 Servidor
-app.listen(4242, () => {
-  console.log("🚀 Servidor escuchando en http://localhost:4242");
-});
+const PORT = process.env.PORT || 4242;
+app.listen(PORT, () => console.log(`🚀 Servidor escuchando en el puerto ${PORT}`));
+
