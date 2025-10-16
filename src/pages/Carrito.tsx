@@ -42,7 +42,7 @@ export default function Carrito() {
       if (checkoutData.codigoPostal.length >= 5) {
         setCalculating(true);
         try {
-          const response = await fetch("http://localhost:4242/calculate-shipping", {
+          const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/calculate-shipping`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ postalCode: checkoutData.codigoPostal }),
@@ -71,7 +71,7 @@ export default function Carrito() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:4242/create-checkout-session", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/create-checkout-session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
