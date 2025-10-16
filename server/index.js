@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import Stripe from "stripe";
 import cors from "cors";
 import bodyParser from "body-parser";
-import fs from "fs";
 
 dotenv.config();
 
@@ -16,26 +15,21 @@ app.use(cors());
 app.use("/webhook", bodyParser.raw({ type: "application/json" }));
 app.use(express.json());
 
-// 🧾 Crear checkout (normal o suscripción)
+// ✅ Crear sesión de checkout
 app.post("/create-checkout-session", async (req, res) => {
   try {
-    const { items, customer, shippingCost } = req.body;
-    if (!items || items.length === 0)
-      return res.status(400).json({ error: "No hay productos." });
-
-    // 🧠 Detectar si alguno es suscripción
-    const isSubscription = items.some((item) => item.type === "subscription");
+    const { items, shippingCost } = req.body;
 
     const lineItems = items.map((item) => ({
       price_data: {
         currency: "mxn",
         product_data: { name: item.name },
         unit_amount: Math.round(item.price * 100),
-        recurring: item.type === "subscription" ? { interval: "month" } : undefined,
       },
       quantity: item.quantity,
     }));
 
+    // Añadir costo de envío (si aplica)
     if (shippingCost && shippingCost > 0) {
       lineItems.push({
         price_data: {
@@ -50,37 +44,10 @@ app.post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: lineItems,
-      mode: isSubscription ? "subscription" : "payment",
-      success_url: "http://localhost:8080/success",
-      cancel_url: "http://localhost:8080/cancel",
-      customer_email: customer?.email || undefined,
-      shipping_address_collection: { allowed_countries: ["MX"] },
-      metadata: {
-        nombre: customer?.nombre || "",
-        telefono: customer?.telefono || "",
-        direccion: customer?.direccion || "",
-        ciudad: customer?.ciudad || "",
-        codigoPostal: customer?.codigoPostal || "",
-        tipoCompra: isSubscription ? "Suscripción mensual" : "Compra única",
-      },
+      mode: "payment",
+      success_url: "https://mohhikat.vercel.app/success",
+      cancel_url: "https://mohhikat.vercel.app/cancel",
     });
-
-    // 🗂️ Guardar orden local
-    const ordersFile = "./orders.json";
-    const existing = fs.existsSync(ordersFile)
-      ? JSON.parse(fs.readFileSync(ordersFile, "utf8"))
-      : [];
-    existing.push({
-      id: session.id,
-      fecha: new Date().toISOString(),
-      cliente: customer,
-      productos: items,
-      envio: shippingCost || 0,
-      total: items.reduce((acc, i) => acc + i.price * i.quantity, 0) + (shippingCost || 0),
-      tipo: isSubscription ? "Suscripción mensual" : "Compra única",
-      url: session.url,
-    });
-    fs.writeFileSync(ordersFile, JSON.stringify(existing, null, 2));
 
     res.json({ url: session.url });
   } catch (error) {
@@ -89,27 +56,20 @@ app.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-// 🚚 Calcular costo de envío
+// 📦 Calcular envío
 app.post("/calculate-shipping", (req, res) => {
   const { postalCode } = req.body;
+
   if (!postalCode) return res.status(400).json({ error: "Código postal requerido" });
 
-  const cp = parseInt(postalCode);
-  let cost = 0;
+  const withinCDMX = /^5[0-4]/.test(postalCode);
+  const nearCDMX = /^55|^56|^57/.test(postalCode);
+  const otherStates = !withinCDMX && !nearCDMX;
 
-  if (postalCode.startsWith("54") || postalCode.startsWith("55") || postalCode.startsWith("56")) {
-    cost = 0;
-  } else if (postalCode.startsWith("50") || postalCode.startsWith("52") || postalCode.startsWith("53") || postalCode.startsWith("57")) {
-    cost = 60;
-  } else if (cp >= 10000 && cp <= 19999) {
-    cost = 80;
-  } else if (cp >= 20000 && cp <= 63999) {
-    cost = 120;
-  } else if (cp >= 64000 && cp <= 79999) {
-    cost = 160;
-  } else if (cp >= 80000) {
-    cost = 180;
-  }
+  let cost = 0;
+  if (withinCDMX) cost = 0;
+  else if (nearCDMX) cost = 80;
+  else if (otherStates) cost = 140;
 
   res.json({ shippingCost: cost });
 });
@@ -129,14 +89,7 @@ app.post("/webhook", (req, res) => {
 
   switch (event.type) {
     case "checkout.session.completed":
-      const session = event.data.object;
-      console.log("✅ Pago completado:", session.id);
-      break;
-    case "invoice.payment_succeeded":
-      console.log("🔁 Renovación mensual exitosa:", event.data.object.id);
-      break;
-    case "invoice.payment_failed":
-      console.log("⚠️ Error al cobrar renovación mensual:", event.data.object.id);
+      console.log("✅ Pago completado:", event.data.object.id);
       break;
     default:
       console.log(`ℹ️ Evento no manejado: ${event.type}`);
@@ -145,7 +98,8 @@ app.post("/webhook", (req, res) => {
   res.json({ received: true });
 });
 
-// 🚀 Servidor
+// 🚀 Escuchar en el puerto asignado por Render
 const PORT = process.env.PORT || 4242;
-app.listen(PORT, () => console.log(`🚀 Servidor escuchando en el puerto ${PORT}`));
-
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor escuchando en el puerto ${PORT}`);
+});
