@@ -1,0 +1,139 @@
+[
+  {
+    "id": "cs_test_a1cRVbQ7cmAhgIYrNomE7gCB4pqDwnBHefKAVfgZ03DTZF97tUaReR7Kro",
+    "fecha": "2025-10-16T06:51:12.567Z",
+    "cliente": {
+      "nombre": "Alejandro ",
+      "email": "alegro2124@gmail.com",
+      "telefono": "5537044050",
+      "direccion": "Colinas de San José",
+      "ciudad": "Tlalnepantla de Baz",
+      "codigoPostal": "54195"
+    },
+    "productos": [
+      {
+        "name": "Mohhikat Premium",
+        "price": 159.99,
+        "quantity": 1,
+        "image": "/src/assets/product-premium.jpg",
+        "type": "product"
+      }
+    ],
+    "envio": 0,
+    "total": 159.99,
+    "url": "https://checkout.stripe.com/c/pay/cs_test_a1cRVbQ7cmAhgIYrNomE7gCB4pqDwnBHefKAVfgZ03DTZF97tUaReR7Kro#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0Vk12bXFMUzM1QlVya2F1M1JdYG5%2FVT11PF1ISWc1VHJHSjQ1d312ZjMzV3N1Vk9vQXxgPWRcfEpBcWFoV1xtUWlmb31zcXxvSndGMV9PdH1cRFVJTVRJNTVtdXxRbWlsSCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZnMmAxYD0nKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl"
+  },
+  {
+    "id": "cs_test_b15U9WbK3WZpMviheYpSLj4Fe5Q479Y3fm7B3fxN4PbbiuLh3M9xRiuGaQ",
+    "fecha": "2025-10-16T06:52:54.663Z",
+    "cliente": {
+      "nombre": "Alejandro Guerrero Salcedo ",
+      "email": "alegro2124@gmail.com",
+      "telefono": "5537044050",
+      "direccion": "Colinaas de San José San Patricio 24",
+      "ciudad": "Tlalnepantla de Baz",
+      "codigoPostal": "64050"
+    },
+    "productos": [
+      {
+        "name": "Mohhikat Premium",
+        "price": 159.99,
+        "quantity": 1,
+        "image": "/src/assets/product-premium.jpg",
+        "type": "product"
+      }
+    ],
+    "envio": 160,
+    "total": 319.99,
+    "url": "https://checkout.stripe.com/c/pay/cs_test_b15U9WbK3WZpMviheYpSLj4Fe5Q479Y3fm7B3fxN4PbbiuLh3M9xRiuGaQ#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0Vk12bXFMUzM1QlVya2F1M1JdYG5%2FVT11PF1ISWc1VHJHSjQ1d312ZjMzV3N1Vk9vQXxgPWRcfEpBcWFoV1xtUWlmb31zcXxvSndGMV9PdH1cRFVJTVRJNTVtdXxRbWlsSCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZnMmAxYD0nKSdpZHxqcHFRfHVgJz8naHBpcWxabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl"
+  },
+  {
+    "id": "cs_test_b1gQcRQ0G5mHrDki0Sjps5QdXFNYaTJijRPoZ5EPtraq6VAVQ01pLccf7M",
+    "fecha": "2025-10-16T06:58:19.786Z",
+    "cliente": {
+      "nombre": "Alejandro Guerrero",
+      "email": "alegro2124@gmail.com",
+      "telefono": "5537044050",
+      "direccion": "Colinas de San josé",
+      "ciudad": "Tlalnepantla de Baz",
+      "codigoPostal": "60050"
+    },
+    "productos": [
+      {
+        "name": "Mohhikat Premium",
+        "price": 159.99,
+        "quantity": 1,
+        "type": "product"
+      }
+    ],
+    "envio": 120,
+    "total": 279.99,
+    "url": "https://checkout.stripe.com/c/pay/cs_test_b1gQcRQ0G5mHrDki0Sjps5QdXFNYaTJijRPoZ5EPtraq6VAVQ01pLccf7M#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSdkdWxOYHwnPyd1blpxYHZxWjA0Vk12bXFMUzM1QlVya2F1M1JdYG5%2FVT11PF1ISWc1VHJHSjQ1d312ZjMzV3N1Vk9vQXxgPWRcfEpBcWFoV1xtUWlmb31zcXxvSndGMV9PdH1cRFVJTVRJNTVtdXxRbWlsSCcpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZnMmAxYD0nKSdpZHxqcHFRfHVgJz8naHBpcWxabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl"
+  },
+  {
+    "id": "cs_test_b1gNq50yhSILak0xqKYUtLb7PoveyBEc4JPi4Ptls64xRZCi7lFnpCPrAj",
+    "fecha": "2025-10-16T08:33:40.752Z",
+    "cliente": {
+      "nombre": "Alejandro Guerrero",
+      "email": "alegro2124@gmail.com",
+      "telefono": "5537044050",
+      "direccion": "Colinas de San José San Patricio 24",
+      "ciudad": "Tlalnepantla de Baz",
+      "codigoPostal": "60600"
+    },
+    "productos": [
+      {
+        "name": "Arena Premium (7kg)",
+        "price": 149.99,
+        "quantity": 2,
+        "type": "subscription"
+      },
+      {
+        "name": "Arena Fresh (10kg)",
+        "price": 139.99,
+        "quantity": 1,
+        "type": "subscription"
+      },
+      {
+        "name": "Mohhikat Fresh",
+        "price": 149.99,
+        "quantity": 1,
+        "type": "product"
+      }
+    ],
+    "envio": 120,
+    "total": 709.96,
+    "tipo": "Suscripción mensual",
+    "url": "https://checkout.stripe.com/c/pay/cs_test_b1gNq50yhSILak0xqKYUtLb7PoveyBEc4JPi4Ptls64xRZCi7lFnpCPrAj#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSd2cGd2ZndsdXFsamtQa2x0cGBrYHZ2QGtkZ2lgYSc%2FY2RpdmApJ2R1bE5gfCc%2FJ3VuWnFgdnFaMDRWTXZtcUxTMzVCVXJrYXUzUl1gbn9VPXU8XUhJZzVUckdKNDV3fXZmMzNXc3VWT29BfGA9ZFx8SkFxYWhXXG1RaWZvfXNxfG9Kd0YxX090fVxEVUlNVEk1NW11fFFtaWxIJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmcyYDFgPScpJ2lkfGpwcVF8dWAnPydocGlxbFpscWBoJyknYGtkZ2lgVWlkZmBtamlhYHd2Jz9xd3BgeCUl"
+  },
+  {
+    "id": "cs_test_b15ihQ0ellUu1KGaZvZzNO0eGUajqkcA3RGJzdGYDZ8kbb34HfepxG0Hxl",
+    "fecha": "2025-10-16T08:37:22.931Z",
+    "cliente": {
+      "nombre": "Alejandro Guerrero",
+      "email": "alegro2124@gmail.com",
+      "telefono": "5537044050",
+      "direccion": "Colinas de San José San patricio",
+      "ciudad": "Tlalnepantla de Baz",
+      "codigoPostal": "54195"
+    },
+    "productos": [
+      {
+        "name": "Arena Premium (7kg)",
+        "price": 149.99,
+        "quantity": 2,
+        "type": "subscription"
+      },
+      {
+        "name": "Mohhikat Fresh",
+        "price": 149.99,
+        "quantity": 1,
+        "type": "product"
+      }
+    ],
+    "envio": 0,
+    "total": 449.97,
+    "tipo": "Suscripción mensual",
+    "url": "https://checkout.stripe.com/c/pay/cs_test_b15ihQ0ellUu1KGaZvZzNO0eGUajqkcA3RGJzdGYDZ8kbb34HfepxG0Hxl#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSd2cGd2ZndsdXFsamtQa2x0cGBrYHZ2QGtkZ2lgYSc%2FY2RpdmApJ2R1bE5gfCc%2FJ3VuWnFgdnFaMDRWTXZtcUxTMzVCVXJrYXUzUl1gbn9VPXU8XUhJZzVUckdKNDV3fXZmMzNXc3VWT29BfGA9ZFx8SkFxYWhXXG1RaWZvfXNxfG9Kd0YxX090fVxEVUlNVEk1NW11fFFtaWxIJyknY3dqaFZgd3Ngdyc%2FcXdwYCknZ2RmbmJ3anBrYUZqaWp3Jz8nJmcyYDFgPScpJ2lkfGpwcVF8dWAnPydocGlxbFpscWBoJyknYGtkZ2lgVWlkZmBtamlhYHd2Jz9xd3BgeCUl"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "builds": [
+    { "src": "package.json", "use": "@vercel/static-build" }
+  ],
+  "env": {
+    "VITE_STRIPE_PUBLIC_KEY": "process.env.VITE_STRIPE_PUBLIC_KEY",
+    "VITE_BACKEND_URL": "process.env.VITE_BACKEND_URL"
+  }
+}
