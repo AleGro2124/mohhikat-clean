@@ -15,7 +15,7 @@ import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Carrito() {
-  const { items, removeItem, updateQuantity, total, clearCart } = useCart();
+  const { items, removeItem, updateQuantity, total } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
   const [loading, setLoading] = useState(false);
   const [shippingCost, setShippingCost] = useState<number | null>(null);
@@ -36,17 +36,20 @@ export default function Carrito() {
     }));
   };
 
-  // 🔹 Calcular envío automáticamente cuando cambia el CP
+  // 🔹 Calcular envío automáticamente
   useEffect(() => {
     const calcularEnvio = async () => {
       if (checkoutData.codigoPostal.length >= 5) {
         setCalculating(true);
         try {
-          const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/calculate-shipping`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ postalCode: checkoutData.codigoPostal }),
-          });
+          const response = await fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/calculate-shipping`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ postalCode: checkoutData.codigoPostal }),
+            }
+          );
           const data = await response.json();
           if (data.shippingCost !== undefined) {
             setShippingCost(data.shippingCost);
@@ -66,25 +69,29 @@ export default function Carrito() {
     calcularEnvio();
   }, [checkoutData.codigoPostal]);
 
+  // 💳 Procesar pago
   const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/create-checkout-session`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: items.map((item) => ({
-            name: item.name,
-            price: item.price,
-            quantity: item.quantity,
-            type: item.type,
-          })),
-          customer: checkoutData,
-          shippingCost: shippingCost || 0,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/create-checkout-session`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: items.map((item) => ({
+              name: item.name,
+              price: item.price,
+              quantity: item.quantity,
+              type: item.type,
+            })),
+            customer: checkoutData,
+            shippingCost: shippingCost || 0,
+          }),
+        }
+      );
 
       const data = await response.json();
       if (data.url) {
@@ -100,6 +107,7 @@ export default function Carrito() {
     }
   };
 
+  // 🛒 Si el carrito está vacío
   if (items.length === 0 && !showCheckout) {
     return (
       <main className="flex-1 flex items-center justify-center px-4 min-h-screen">
@@ -126,7 +134,7 @@ export default function Carrito() {
 
         {!showCheckout ? (
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* 🛒 Productos */}
+            {/* 🛒 Lista de productos */}
             <div className="lg:col-span-2 space-y-4">
               {items.map((item) => (
                 <Card key={item.id}>
@@ -191,7 +199,7 @@ export default function Carrito() {
               ))}
             </div>
 
-            {/* 🧾 Resumen */}
+            {/* 💰 Resumen del pedido */}
             <div>
               <Card className="sticky top-24">
                 <CardHeader>
