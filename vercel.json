@@ -1,23 +1,10 @@
 {
   "version": 2,
-  "framework": "vite",
-  "buildCommand": "npm install && npm run build",
+  "buildCommand": "npm run build",
   "installCommand": "npm install",
   "outputDirectory": "dist",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build"
-    }
-  ],
+  "framework": "vite",
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "env": {
-    "VITE_BACKEND_URL": "https://mohhikat-api.onrender.com",
-    "VITE_STRIPE_PUBLIC_KEY": "@vite_stripe_public_key"
-  }
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
 }
