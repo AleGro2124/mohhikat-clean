@@ -42,12 +42,12 @@ app.post("/create-checkout-session", async (req, res) => {
     }
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: lineItems,
-      mode: "payment",
-     success_url: "https://mohhikat.vercel.app/success",
-     cancel_url: "https://mohhikat.vercel.app/cancel",
-    });
+  payment_method_types: ["card"],
+  line_items: lineItems,
+  mode: "payment",
+  success_url: "https://mohhikat-clean.vercel.app/success",
+  cancel_url: "https://mohhikat-clean.vercel.app/cancel",
+});
 
     res.json({ url: session.url });
   } catch (error) {
