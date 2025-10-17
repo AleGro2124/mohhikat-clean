@@ -4,27 +4,22 @@
   "buildCommand": "npm install && npm run build",
   "installCommand": "npm install",
   "outputDirectory": "dist",
-  "production": {
-    "env": {
-      "VITE_BACKEND_URL": "https://mohhikat-api.onrender.com",
-      "VITE_STRIPE_PUBLIC_KEY": "@vite_stripe_public_key"
-    },
-    "domains": ["mohhikat-clean.vercel.app"],
-    "public": true
-  },
-  "github": {
-    "enabled": false
-  },
-  "git": {
-    "deploymentEnabled": false
-  },
   "builds": [
     { "src": "package.json", "use": "@vercel/static-build" }
   ],
   "routes": [
     {
+      "src": "https://mohhikat-clean-.*\\.vercel\\.app/(.*)",
+      "status": 301,
+      "headers": { "Location": "https://mohhikat-clean.vercel.app/$1" }
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ]
+  ],
+  "env": {
+    "VITE_BACKEND_URL": "https://mohhikat-api.onrender.com",
+    "VITE_STRIPE_PUBLIC_KEY": "@vite_stripe_public_key"
+  }
 }
