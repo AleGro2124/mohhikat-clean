@@ -5,14 +5,12 @@
   "installCommand": "npm install",
   "outputDirectory": "dist",
   "builds": [
-    { "src": "package.json", "use": "@vercel/static-build" }
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
   ],
   "routes": [
-    {
-      "src": "https://mohhikat-clean-.*\\.vercel\\.app/(.*)",
-      "status": 301,
-      "headers": { "Location": "https://mohhikat-clean.vercel.app/$1" }
-    },
     {
       "src": "/(.*)",
       "dest": "/index.html"
