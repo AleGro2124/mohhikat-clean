@@ -45,7 +45,7 @@ export default function Calculadora() {
     <main className="relative flex-1 flex items-center justify-center py-20 px-4 overflow-hidden">
       {/* 🐾 Fondo: imagen + degradado tipo Hero */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-[0.15]"
+        className="absolute inset-0 bg-cover bg-center opacity-[0.25]"
         style={{ backgroundImage: `url(${calcBg})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-secondary/10" />
